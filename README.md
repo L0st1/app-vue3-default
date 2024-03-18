@@ -1,4 +1,4 @@
-# base
+# app-vue3
 
 ## Project setup
 ```
