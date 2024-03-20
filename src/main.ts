@@ -24,7 +24,10 @@ let history: RouterHistory;
 
 function render(props: IRenderProps) {
   const { container } = props;
-  history = createWebHistory(window.__POWERED_BY_QIANKUN__ ? "/app-vue3" : "/");
+  history = createWebHistory(
+    window.__POWERED_BY_QIANKUN__ ? "/app-vue3/" : "/app-vue3-default/"
+  );
+  console.log("window.__POWERED_BY_QIANKUN__ :", window.__POWERED_BY_QIANKUN__);
   router = createRouter({
     history,
     routes,
