@@ -8,6 +8,8 @@ import {
 import AppCom from "./App.vue";
 import routes from "./router";
 
+import "@/style/index.scss";
+
 declare global {
   interface Window {
     __POWERED_BY_QIANKUN__?: boolean;
