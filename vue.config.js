@@ -32,11 +32,16 @@ module.exports = defineConfig({
     });
   },
   // 自定义webpack配置
-  configureWebpack: {
-    output: {
-      library: `${name}-[name]`,
-      libraryTarget: "umd", // 把子应用打包成 umd 库格式
-      chunkLoadingGlobal: `webpackJsonp_${name}`,
-    },
+  configureWebpack: () => {
+    return {
+      plugins: [
+        require("unplugin-element-plus/webpack")({}),
+      ],
+      output: {
+        library: `${name}-[name]`,
+        libraryTarget: "umd", // 把子应用打包成 umd 库格式
+        chunkLoadingGlobal: `webpackJsonp_${name}`,
+      },
+    }
   },
 });

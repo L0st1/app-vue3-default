@@ -9,6 +9,7 @@ import AppCom from "./App.vue";
 import routes from "./router";
 
 import "@/style/index.scss";
+import "@/style/element/index.scss";
 
 declare global {
   interface Window {
