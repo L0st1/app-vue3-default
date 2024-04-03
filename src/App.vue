@@ -8,9 +8,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  background-color: aliceblue;
   height: var(--mirco-app-max-height);
+  padding: 16px;
+  position: relative;
 }
 
 nav {
