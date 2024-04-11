@@ -2,6 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 import AboutView from "../views/AboutView.vue";
 import UseIntersectionObserver from "@/views/UseIntersectionObserver.vue";
 import AnchorByElement from "@/views/AnchorByElement.vue";
+import ElementTest from "@/views/ElementTest.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -22,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/AnchorByElement",
     name: "AnchorByElement",
     component: AnchorByElement,
+  },
+  {
+    path: "/test",
+    name: "Element",
+    component: ElementTest,
   }
 ];
 
