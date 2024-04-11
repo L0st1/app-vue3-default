@@ -1,5 +1,6 @@
 const { name } = require("./package");
 const { defineConfig } = require("@vue/cli-service");
+// const srl = require("string-replace-loader");
 module.exports = defineConfig({
   publicPath: "/app-vue3-default/",
   devServer: {
@@ -17,6 +18,16 @@ module.exports = defineConfig({
       .loader("url-loader")
       .tap((option) => ({ name: "/fonts/[name].[hash:8].[ext]" }))
       .end();
+    // config.module
+    //   .rule("string-replace-loader")
+    //   .test(/\.scss$/)
+    //   .use("string-replace-loader")
+    //   .loader("string-replace-loader")
+    //   .options({
+    //     search: /:root/g,
+    //     replace: ":root, :host",
+    //     flags: 'g'
+    //   });
     // 移除 preload 插件
     config.plugins.delete("preload");
     // 移除 prefetch 插件
@@ -34,14 +45,12 @@ module.exports = defineConfig({
   // 自定义webpack配置
   configureWebpack: () => {
     return {
-      plugins: [
-        require("unplugin-element-plus/webpack")({}),
-      ],
+      plugins: [require("unplugin-element-plus/webpack")({})],
       output: {
         library: `${name}-[name]`,
         libraryTarget: "umd", // 把子应用打包成 umd 库格式
         chunkLoadingGlobal: `webpackJsonp_${name}`,
       },
-    }
+    };
   },
 });
