@@ -19,6 +19,7 @@ declare global {
 
 interface IRenderProps {
   container: Element | string;
+  data?: Record<string, any>;
 }
 
 let router: Router;
@@ -26,7 +27,7 @@ let instance: App<Element>;
 let history: RouterHistory;
 
 function render(props: IRenderProps) {
-  const { container } = props;
+  const { container, data: propsData } = props;
   history = createWebHistory(
     window.__POWERED_BY_QIANKUN__ ? "/app-vue3/" : "/app-vue3-default/"
   );
@@ -36,7 +37,15 @@ function render(props: IRenderProps) {
     routes,
   });
 
-  instance = createApp(AppCom);
+  instance = createApp(AppCom, {
+    data: function() {
+      return {
+          aaa: propsData
+        };
+      }
+  });
+  instance.config.globalProperties.$store = propsData;
+  // instance.provide('parentVuex', propsData);
   instance.use(router);
   instance.mount(
     typeof container === "string"
