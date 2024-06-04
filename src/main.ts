@@ -19,15 +19,16 @@ declare global {
 
 interface IRenderProps {
   container: Element | string;
-  data?: Record<string, any>;
+  data?: any;
 }
 
 let router: Router;
 let instance: App<Element>;
 let history: RouterHistory;
+export let baseStore: any;
 
 function render(props: IRenderProps) {
-  const { container, data: propsData } = props;
+  const { container, data: { store } } = props;
   history = createWebHistory(
     window.__POWERED_BY_QIANKUN__ ? "/app-vue3/" : "/app-vue3-default/"
   );
@@ -37,15 +38,10 @@ function render(props: IRenderProps) {
     routes,
   });
 
-  instance = createApp(AppCom, {
-    data: function() {
-      return {
-          aaa: propsData
-        };
-      }
-  });
-  instance.config.globalProperties.$store = propsData;
-  // instance.provide('parentVuex', propsData);
+  instance = createApp(AppCom);
+  instance.config.globalProperties.$store = store;
+  baseStore = store;
+
   instance.use(router);
   instance.mount(
     typeof container === "string"
