@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@ice/stark-data':
+    specifier: ^0.1.3
+    version: 0.1.3
   '@vueuse/components':
     specifier: ^10.9.0
     version: 10.9.0(vue@3.4.21)
@@ -1483,6 +1486,10 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@ice/stark-data@0.1.3:
+    resolution: {integrity: sha512-qm8f9EF1UFZZcgMxTqxMCqace8FU9ssDnR/zIQPIj5T3G4QzztvzNBHAtysO+g1E6ZFlaB+bKuCTjueosfFi8Q==}
+    dev: false
 
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}

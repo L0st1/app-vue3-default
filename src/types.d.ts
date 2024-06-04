@@ -5,3 +5,4 @@ declare module "@vue/runtime-core" {
     $store: any;
   }
 }
+declare module "@ice/stark-data" {}
