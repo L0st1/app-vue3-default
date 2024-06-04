@@ -2,18 +2,20 @@
   <div class="about">
     <h1>MricoApp__Vue3</h1>
     <el-descriptions :column="1" border>
-      <el-descriptions-item label="qiankun Action A">kooriookami</el-descriptions-item>
-      <el-descriptions-item label="ice/stack-data B">{{ 5 }}</el-descriptions-item>
+      <el-descriptions-item label="qiankun Action A">{{ 0 }}</el-descriptions-item>
+      <el-descriptions-item label="ice/stark-data B">{{ b }}</el-descriptions-item>
       <el-descriptions-item label="子应用定时器实时刷新 VueX C">{{ c }}</el-descriptions-item>
       <el-descriptions-item label="不挂载方法或属性到实例 C">{{ c2 }}</el-descriptions-item>
     </el-descriptions>
     <el-button @click="commitValueC">改变C的值为10</el-button>
+    <el-button @click="sendEvent">触发@ice/stark-data事件</el-button>
   </div>
 </template>
 <script setup lang="ts">
-import { ref, getCurrentInstance, onUnmounted } from 'vue';
-import { useIntervalFn } from '@vueuse/core';
-import { ElDescriptions, ElDescriptionsItem, ElButton } from 'element-plus';
+import { ref, getCurrentInstance, onUnmounted } from "vue";
+import { useIntervalFn } from "@vueuse/core";
+import { ElDescriptions, ElDescriptionsItem, ElButton } from "element-plus";
+import { store as iceStore, event as iceEvent } from "@ice/stark-data";
 
 import { baseStore } from "@/main";
 
@@ -26,14 +28,30 @@ const c2 = ref(baseStore.state.persistedData);
 
 const commitValueC = () => {
   store.commit("change-count", 10);
-}
+};
 
 const { pause, resume, isActive } = useIntervalFn(() => {
   c.value = store.state.persistedData;
   c2.value = store.state.persistedData;
-}, 500)
+}, 500);
+
+/* 子应用通过@ice/stark-data获取来自主应用或其他子应用的状态 */
+const b = ref(iceStore.get("iceData"));
+iceStore.on(
+  "iceData",
+  (data: unknown) => {
+    b.value = data;
+  },
+  true
+);
+// 通过@ice/stark-data触发事件
+const sendEvent = () => {
+  iceEvent.emit("freshEvent", "value from child");
+}
 
 onUnmounted(() => {
   pause();
-})
+  iceStore.off("iceData");
+});
+
 </script>
