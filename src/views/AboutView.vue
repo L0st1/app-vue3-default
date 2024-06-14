@@ -6,9 +6,13 @@
       <el-descriptions-item label="ice/stark-data B">{{ b }}</el-descriptions-item>
       <el-descriptions-item label="子应用定时器实时刷新 VueX C">{{ c }}</el-descriptions-item>
       <el-descriptions-item label="不挂载方法或属性到实例 C">{{ c2 }}</el-descriptions-item>
+      <el-descriptions-item label="主应用通过props下发的useGlobalState A">{{
+        d
+      }}</el-descriptions-item>
     </el-descriptions>
     <el-button @click="commitValueC">改变C的值为10</el-button>
     <el-button @click="sendEvent">触发@ice/stark-data事件</el-button>
+    <el-button @click="commitValueA">改变A的值为10</el-button>
   </div>
 </template>
 <script setup lang="ts">
@@ -16,7 +20,7 @@ import { ref, getCurrentInstance, onUnmounted } from "vue";
 import { useIntervalFn } from "@vueuse/core";
 import { ElDescriptions, ElDescriptionsItem, ElButton } from "element-plus";
 import { store as iceStore, event as iceEvent } from "@ice/stark-data";
-import { useGlobalState } from "@/vueuse/store"; 
+import { useGlobalState } from "@/vueuse/store";
 
 import { baseStore } from "@/main";
 
@@ -57,4 +61,10 @@ onUnmounted(() => {
 
 const { getter, setter } = useGlobalState();
 const a = getter("count");
+const commitValueA = () => {
+  setter("count", 10);
+}
+
+const d = getter("count")
+
 </script>
