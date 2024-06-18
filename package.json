@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:dev": "vue-cli-service build --mode development",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
@@ -45,7 +46,8 @@
     "sass": "^1.72.0",
     "sass-loader": "^12.6.0",
     "ts-jest": "^27.1.5",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "webpack-bundle-analyzer": "^4.10.2"
   },
   "eslintConfig": {
     "root": true,
