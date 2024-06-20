@@ -9,7 +9,6 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
-
 // const srl = require("string-replace-loader");
 module.exports = defineConfig({
   publicPath: "/app-vue3-default/",
@@ -87,8 +86,9 @@ module.exports = defineConfig({
         },
       },
     };
-    return {
-      plugins: [require("unplugin-element-plus/webpack")({}),
+    const plugins = [];
+    plugins.push(require("unplugin-element-plus/webpack")({}));
+    if(process.env.VUE_APP_ANALY) plugins.push(
       new BundleAnalyzerPlugin({
         // analyzerMode: "server", // 不启动展示打包报告的http服务器  127.0.0.1:2000
         // analyzerPort: "2000",
@@ -103,8 +103,10 @@ module.exports = defineConfig({
         openAnalyzer: false, // 默认在浏览器中自动打开报告
         statsFilename: 'stats.json', // 如果generateStatsFile为true，将会生成Webpack Stats JSON文件的名字
         statsOptions: { source: false }
-      }),
-      ],
+      })
+    );
+    return {
+      plugins,
       output: {
         library: `${name}-[name]`,
         libraryTarget: "umd", // 把子应用打包成 umd 库格式

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:analy": "vue-cli-service serve --mode analy",
     "build": "vue-cli-service build",
     "build:dev": "vue-cli-service build --mode development",
     "test:unit": "vue-cli-service test:unit",
@@ -15,10 +16,11 @@
     "@vueuse/core": "^10.9.0",
     "alova": "^2.18.0",
     "core-js": "^3.36.1",
-    "element-plus": "^2.6.2",
+    "cross-env": "^7.0.3",
+    "element-plus": "^2.7.5",
     "string-replace-loader": "^3.1.0",
     "unplugin-element-plus": "^0.8.0",
-    "vue": "^3.4.21",
+    "vue": "^3.4.29",
     "vue-router": "^4.3.0",
     "vuex": "^4.1.0"
   },
