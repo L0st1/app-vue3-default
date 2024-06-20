@@ -112,6 +112,10 @@ module.exports = defineConfig({
         libraryTarget: "umd", // 把子应用打包成 umd 库格式
         chunkLoadingGlobal: `webpackJsonp_${name}`,
       },
+      externals: {
+        'element-plus': 'ElementPlus',
+        'vue': 'Vue',
+      }
     };
   },
 });
